@@ -37,62 +37,73 @@ The right-sidebar entry appears in the sidebar's **+** guide:
 
 ## Download
 
-Latest release: [GitHub Releases](https://github.com/Callay02/dsh-ssh/releases/latest). The asset is a local DSH bundle tarball (`.tgz`), not an npm package.
+Latest release: [GitHub Releases](https://github.com/Callay02/dsh-ssh/releases/latest). The asset is a local DSH bundle tarball (`.tgz`); the npm package is `dsh-ssh-plugin`.
 
 After downloading `dsh-ssh-0.1.0.tgz`, pass its absolute path as the `target` of `plugin_manager` `install_bundle`, or unpack it and follow Method B.
 
 ## Installation
 
-This is a local bundle; the `@local` scope is intentional and it is not published to npm. Clone the repository first:
+The plugin is published as `dsh-ssh-plugin` on npm and can also be linked from source.
 
-```sh
-git clone https://github.com/Callay02/dsh-ssh.git
-cd dsh-ssh
-```
+### A. Install from npm (recommended)
 
-### A. Install with the plugin manager (recommended)
-
-In a profile where `plugin_manager` is available (Creator mode or a preset that enables it), ask the agent:
+In a profile where `plugin_manager` is available, ask the agent:
 
 ```text
-Install this local bundle with plugin_manager install_bundle:
-/absolute/path/to/dsh-ssh
+Install this npm package with plugin_manager install_bundle:
+dsh-ssh-plugin
+```
+
+Or add it manually in `$DSH_PROFILE_DIR`:
+
+```sh
+pnpm add dsh-ssh-plugin
+```
+
+Without `plugin_manager`, append the Host row to `$DSH_PROFILE_DIR/cordis.patch.yml`:
+
+```yaml
+- insert:
+    - id: ssh
+      name: 'dsh-ssh-plugin'
 ```
 
 Then refresh the page. The SSH button appears at the bottom-right; the sidebar guide also gains an **SSH terminal** card.
 
-### B. Manual link installation
+### B. Link from source
+
+Clone and build the browser bundle first:
+
+```sh
+git clone https://github.com/Callay02/dsh-ssh.git
+cd dsh-ssh
+pnpm install
+pnpm run build
+```
 
 DSH Desktop manages its `desktop` profile exclusively, so the `dsh plugin` CLI cannot modify it. Use this fallback:
 
-1. Install dependencies and build the browser bundle:
-
-   ```sh
-   pnpm install
-   pnpm run build
-   ```
-
-2. Add the package to the profile manifest (`$DSH_PROFILE_DIR/package.json`), after backing it up:
+1. Add the package to the profile manifest (`$DSH_PROFILE_DIR/package.json`), after backing it up:
 
    ```json
    {
      "dependencies": {
-       "@local/dsh-ssh": "link:/absolute/path/to/dsh-ssh"
+       "dsh-ssh-plugin": "link:/absolute/path/to/dsh-ssh"
      }
    }
    ```
 
-3. Run `pnpm install --ignore-scripts` in the profile directory.
+2. Run `pnpm install --ignore-scripts` in the profile directory.
 
-4. Append this row to `$DSH_PROFILE_DIR/cordis.patch.yml`:
+3. Append this row to `$DSH_PROFILE_DIR/cordis.patch.yml`:
 
    ```yaml
    - insert:
        - id: ssh
-         name: '@local/dsh-ssh'
+         name: 'dsh-ssh-plugin'
    ```
 
-5. Reload the page or restart the desktop app.
+4. Reload the page or restart the desktop app.
 
 > Editing the profile writes outside the workspace. Back up `package.json`, `pnpm-lock.yaml` and `cordis.patch.yml` first.
 

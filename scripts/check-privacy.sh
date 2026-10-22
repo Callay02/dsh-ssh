@@ -57,7 +57,7 @@ for file in $files; do
   esac
 
   case "$file" in
-    connections.json|*/.env|.env|.env.*|*.pem|*.key|*.p12|id_rsa|id_ed25519|test/shots/*|node_modules/*|.DS_Store)
+    connections.json|*/.env|.env|.env.*|.npmrc|*/.npmrc|*.pem|*.key|*.p12|id_rsa|id_ed25519|test/shots/*|node_modules/*|.DS_Store)
       echo "privacy: forbidden file path: $file" >&2
       failed=1
       continue

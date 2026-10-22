@@ -26,7 +26,7 @@ const result = await build({
 const code = result.outputFiles[0].text
 const wrapped = `/* Built from client/src — run "npm run build" after editing. */
 window.__ModuleLoader__.load({
-  id: "@local/dsh-ssh",
+  id: "dsh-ssh-plugin",
   factory: (require) => {
     var module = { exports: {} };
     var exports = module.exports;

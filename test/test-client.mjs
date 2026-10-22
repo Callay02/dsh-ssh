@@ -24,7 +24,7 @@ globalThis.IS_REACT_ACT_ENVIRONMENT = true
 let registration
 window.__ModuleLoader__ = { load(value) { registration = value } }
 await import('../client.js')
-assert.equal(registration.id, '@local/dsh-ssh')
+assert.equal(registration.id, 'dsh-ssh-plugin')
 const exports = registration.factory((name) => {
   if (name === 'react') return React
   throw new Error(`unexpected require: ${name}`)

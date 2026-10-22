@@ -6,7 +6,7 @@
 
 在 DeepSeek Harness 里连接远程服务器：**SSH 终端和 SFTP 文件管理器直接开在右侧栏**，主对话窗口始终在旁边，不需要退出当前会话。Agent 也可以执行远程命令、上传/下载文件，支持多连接管理与主机密钥固定（TOFU）。
 
-> 包名：`@local/dsh-ssh` · 版本：`0.1.0` · 运行位置：DSH Web / Desktop 的 Host 进程 + Web 客户端
+> 包名：`dsh-ssh-plugin` · 版本：`0.1.0` · 运行位置：DSH Web / Desktop 的 Host 进程 + Web 客户端
 
 ![SSH 终端与主对话并排](docs/screenshots/panel.png)
 
@@ -33,60 +33,69 @@
 
 ## 下载
 
-最新发行版：[GitHub Releases](https://github.com/Callay02/dsh-ssh/releases/latest)。发布包是本地 DSH bundle 的 `.tgz`，不是 npm 包。
+最新发行版：[GitHub Releases](https://github.com/Callay02/dsh-ssh/releases/latest)。发布包是本地 DSH bundle 的 `.tgz`；npm 包名为 `dsh-ssh-plugin`。
 
 下载 `dsh-ssh-0.1.0.tgz` 后，可以把它的绝对路径作为 `plugin_manager` `install_bundle` 的 `target`；也可以解压后按方式 B 手动链接。
 
 ## 安装
 
-本插件按本地 bundle 开发，包名 `@local/dsh-ssh` 只是本地作用域，不发布到 npm。先获取源码：
+本插件发布为 npm 包 `dsh-ssh-plugin`，也可以从源码本地安装。
+
+### 方式 A：从 npm 安装（推荐）
+
+在启用 `plugin_manager` 的 profile 中，对 Agent 说：
+
+```text
+用 plugin_manager 的 install_bundle 安装 npm 包：
+dsh-ssh-plugin
+```
+
+或者手动在 `$DSH_PROFILE_DIR` 执行：
+
+```sh
+pnpm add dsh-ssh-plugin
+```
+
+如果不用 `plugin_manager`，还需要在 `$DSH_PROFILE_DIR/cordis.patch.yml` 末尾加入 Host 行：
+
+```yaml
+- insert:
+    - id: ssh
+      name: 'dsh-ssh-plugin'
+```
+
+安装后刷新页面即可在右下角看到 **SSH** 按钮，或在右侧栏 **+** 菜单里选择 **SSH 终端**。
+
+### 方式 B：从源码本地链接
+
+先获取源码、安装依赖并构建客户端：
 
 ```sh
 git clone https://github.com/Callay02/dsh-ssh.git
 cd dsh-ssh
+pnpm install
+pnpm run build
 ```
 
-安装后通过 `link:` 进入当前 profile。
+DSH Desktop 的 `desktop` profile 由 Electron 独占，`dsh plugin` CLI 拒绝操作，因此手动链接需要：
 
-### 方式 A：由 Agent 使用 `plugin_manager` 安装（推荐）
-
-在 Creator 模式（或启用了 `tool-plugin-manager` 的 profile）中，对 Agent 说：
-
-```text
-用 plugin_manager 的 install_bundle 安装这个本地目录：
-/absolute/path/to/dsh-ssh
-```
-
-`install_bundle` 会完成 pnpm 安装与 bundle 选择。安装后刷新页面即可在右下角看到 **SSH** 按钮，或在右侧栏 **+** 菜单里选择 **SSH 终端**。
-
-### 方式 B：手动链接（无法使用 plugin_manager 时）
-
-DSH Desktop 的 `desktop` profile 由 Electron 独占，`dsh plugin` CLI 拒绝操作，因此需要：
-
-1. 安装依赖并构建客户端：
-
-   ```sh
-   pnpm install
-   pnpm run build
-   ```
-
-2. 在 `$DSH_PROFILE_DIR/package.json` 中加入依赖（先备份）：
+1. 在 `$DSH_PROFILE_DIR/package.json` 中加入依赖（先备份）：
 
    ```json
-   { "dependencies": { "@local/dsh-ssh": "link:/absolute/path/to/dsh-ssh" } }
+   { "dependencies": { "dsh-ssh-plugin": "link:/absolute/path/to/dsh-ssh" } }
    ```
 
-3. 在 profile 目录执行 `pnpm install --ignore-scripts`。
+2. 在 profile 目录执行 `pnpm install --ignore-scripts`。
 
-4. 在 `$DSH_PROFILE_DIR/cordis.patch.yml` 末尾加入：
+3. 在 `$DSH_PROFILE_DIR/cordis.patch.yml` 末尾加入：
 
    ```yaml
    - insert:
        - id: ssh
-         name: '@local/dsh-ssh'
+         name: 'dsh-ssh-plugin'
    ```
 
-5. 重新加载页面（桌面版可重启应用）。HMR 会重组配置并加载 Host 行。
+4. 重新加载页面（桌面版可重启应用）。HMR 会重组配置并加载 Host 行。
 
 > 手动编辑 profile 会写入工作区之外的文件。请先备份 `package.json`、`pnpm-lock.yaml` 与 `cordis.patch.yml`。
 

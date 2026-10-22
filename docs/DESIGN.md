@@ -308,7 +308,7 @@ hostVerifier(hash) {
 7. **文件夹打包**：HTTP 路由测试生成带空格路径的目录并解压 `.tar.gz`；UI 测试点击目录下载并确认 gzip 头与成员。
 8. **传输进度**：UI 测试用 XHR 完成上传/下载与归档下载，确认文件落盘与下载事件。
 9. **语言切换**：客户端测试注入 en → zh 的 locale 变更，验证 Launcher 文案原地从英文切到中文。
-10. **客户端 bundle 服务**：从桌面实例 boot graph 中确认 `@local/dsh-ssh` 条目存在，combo 资源 200、约 535 KiB，loader id 正确。
+10. **客户端 bundle 服务**：从桌面实例 boot graph 中确认 `dsh-ssh-plugin` 条目存在，combo 资源 200、约 535 KiB，loader id 正确。
 
 未自动化验证：深色主题、Windows/Linux、跳板机、超大文件（>2 GiB）、断网重连矩阵、多窗口同时操作同一终端。
 
