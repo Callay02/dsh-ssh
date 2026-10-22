@@ -36,7 +36,7 @@
 本插件按本地 bundle 开发，包名 `@local/dsh-ssh` 只是本地作用域，不发布到 npm。先获取源码：
 
 ```sh
-git clone https://github.com/your-account/dsh-ssh.git
+git clone https://github.com/Callay02/dsh-ssh.git
 cd dsh-ssh
 ```
 

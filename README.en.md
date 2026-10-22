@@ -40,7 +40,7 @@ The right-sidebar entry appears in the sidebar's **+** guide:
 This is a local bundle; the `@local` scope is intentional and it is not published to npm. Clone the repository first:
 
 ```sh
-git clone https://github.com/your-account/dsh-ssh.git
+git clone https://github.com/Callay02/dsh-ssh.git
 cd dsh-ssh
 ```
 
