@@ -1,0 +1,62 @@
+{
+  "name": "@local/dsh-ssh",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SSH connections, remote execution, terminals and SFTP file transfer for DeepSeek Harness.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "host",
+    "client.js",
+    "client",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "docs",
+    "README.en.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node client/build.mjs",
+    "test": "node test/test-manager.mjs",
+    "test:routes": "node test/test-routes.mjs",
+    "test:client": "node test/test-client.mjs",
+    "test:ui": "node test/ui-shot.mjs",
+    "sshd:start": "sh test/setup-local-sshd.sh start",
+    "sshd:stop": "sh test/setup-local-sshd.sh stop",
+    "test:metrics": "node test/test-metrics.mjs"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "ssh2": "^1.17.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.10",
+    "jsdom": "26.1.0",
+    "playwright-core": "1.55.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

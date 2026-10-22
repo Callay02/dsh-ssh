@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "SSH",
+    "description": "Connect to remote servers over SSH: let the agent run commands and transfer files, and use an interactive terminal with SFTP file management."
+  }
+}

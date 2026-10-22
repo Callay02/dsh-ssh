@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "SSH",
+    "description": "通过 SSH 连接远程服务器：让 Agent 执行命令、上传下载文件，并提供交互式终端与 SFTP 文件管理。"
+  }
+}

@@ -1,0 +1,5 @@
+# Adds the SSH bundle's Host row. The plugin's client half is loaded from
+# `dsh.client` in package.json; this patch only needs the Host entry.
+- insert:
+    - id: ssh
+      name: '@local/dsh-ssh'
