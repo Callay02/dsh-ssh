@@ -22,7 +22,10 @@
     "README.md",
     "docs",
     "README.en.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md",
+    "test",
+    "pnpm-lock.yaml"
   ],
   "dsh": {
     "bundle": {

@@ -35,6 +35,12 @@ The right-sidebar entry appears in the sidebar's **+** guide:
 - A remote SSH server
 - For development: Node.js, pnpm, and a C/C++ toolchain only if your platform needs to build `ssh2`'s optional native addon (the pure-JS path works without it)
 
+## Download
+
+Latest release: [GitHub Releases](https://github.com/Callay02/dsh-ssh/releases/latest). The asset is a local DSH bundle tarball (`.tgz`), not an npm package.
+
+After downloading `dsh-ssh-0.1.0.tgz`, pass its absolute path as the `target` of `plugin_manager` `install_bundle`, or unpack it and follow Method B.
+
 ## Installation
 
 This is a local bundle; the `@local` scope is intentional and it is not published to npm. Clone the repository first:

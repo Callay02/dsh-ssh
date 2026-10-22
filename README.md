@@ -31,6 +31,12 @@
 
 ![编辑连接](docs/screenshots/connection-form.png)
 
+## 下载
+
+最新发行版：[GitHub Releases](https://github.com/Callay02/dsh-ssh/releases/latest)。发布包是本地 DSH bundle 的 `.tgz`，不是 npm 包。
+
+下载 `dsh-ssh-0.1.0.tgz` 后，可以把它的绝对路径作为 `plugin_manager` `install_bundle` 的 `target`；也可以解压后按方式 B 手动链接。
+
 ## 安装
 
 本插件按本地 bundle 开发，包名 `@local/dsh-ssh` 只是本地作用域，不发布到 npm。先获取源码：
