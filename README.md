@@ -1,5 +1,7 @@
 [English](README.en.md) | 中文
 
+> 非官方社区插件，与 DeepSeek 官方无隶属关系。文档截图使用演示数据，不含真实连接或凭据。
+
 # DSH SSH 插件
 
 在 DeepSeek Harness 里连接远程服务器：**SSH 终端和 SFTP 文件管理器直接开在右侧栏**，主对话窗口始终在旁边，不需要退出当前会话。Agent 也可以执行远程命令、上传/下载文件，支持多连接管理与主机密钥固定（TOFU）。
@@ -31,7 +33,14 @@
 
 ## 安装
 
-本插件按 Workspace 本地包开发，安装后通过 `link:` 进入当前 profile。
+本插件按本地 bundle 开发，包名 `@local/dsh-ssh` 只是本地作用域，不发布到 npm。先获取源码：
+
+```sh
+git clone https://github.com/your-account/dsh-ssh.git
+cd dsh-ssh
+```
+
+安装后通过 `link:` 进入当前 profile。
 
 ### 方式 A：由 Agent 使用 `plugin_manager` 安装（推荐）
 
@@ -39,12 +48,12 @@
 
 ```text
 用 plugin_manager 的 install_bundle 安装这个本地目录：
-/absolute/path/to/SSH插件
+/absolute/path/to/dsh-ssh
 ```
 
 `install_bundle` 会完成 pnpm 安装与 bundle 选择。安装后刷新页面即可在右下角看到 **SSH** 按钮，或在右侧栏 **+** 菜单里选择 **SSH 终端**。
 
-### 方式 B：手动链接（本机已使用的方式）
+### 方式 B：手动链接（无法使用 plugin_manager 时）
 
 DSH Desktop 的 `desktop` profile 由 Electron 独占，`dsh plugin` CLI 拒绝操作，因此需要：
 
@@ -58,7 +67,7 @@ DSH Desktop 的 `desktop` profile 由 Electron 独占，`dsh plugin` CLI 拒绝�
 2. 在 `$DSH_PROFILE_DIR/package.json` 中加入依赖（先备份）：
 
    ```json
-   { "dependencies": { "@local/dsh-ssh": "link:/绝对路径/SSH插件" } }
+   { "dependencies": { "@local/dsh-ssh": "link:/absolute/path/to/dsh-ssh" } }
    ```
 
 3. 在 profile 目录执行 `pnpm install --ignore-scripts`。
@@ -179,7 +188,7 @@ sh test/setup-local-sshd.sh
 
 > macOS 的 `sshd` 在 DSH 文件沙箱内无法初始化自己的 sandbox；启动测试 sshd 时需要在沙箱外执行。
 
-使用 Electron 自带的 Node 运行脚本（本机没有独立 `node`）：
+如果系统没有独立的 `node`，可以使用 Electron 自带的 Node 运行脚本：
 
 ```sh
 ELECTRON_RUN_AS_NODE=1 "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness" test/test-manager.mjs
@@ -207,3 +216,7 @@ test/                    集成测试、UI 测试与本地 sshd 脚本
 ```
 
 详细设计（数据模型、API、时序、安全与取舍）见 [docs/DESIGN.md](docs/DESIGN.md)。
+
+## 许可证
+
+MIT，详见 [LICENSE](LICENSE)。

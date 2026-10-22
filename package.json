@@ -21,7 +21,8 @@
     "icon.svg",
     "README.md",
     "docs",
-    "README.en.md"
+    "README.en.md",
+    "LICENSE"
   ],
   "dsh": {
     "bundle": {
@@ -58,5 +59,6 @@
     "playwright-core": "1.55.0",
     "react": "18.3.1",
     "react-dom": "18.3.1"
-  }
+  },
+  "license": "MIT"
 }

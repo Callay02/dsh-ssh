@@ -4,6 +4,8 @@ SSH for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): a r
 
 [中文文档](README.md)
 
+> Unofficial community plugin, not affiliated with DeepSeek. Screenshots use demo data and contain no real connections or credentials.
+
 ![SSH terminal beside the agent chat](docs/screenshots/panel.png)
 
 ## Features
@@ -35,13 +37,20 @@ The right-sidebar entry appears in the sidebar's **+** guide:
 
 ## Installation
 
+This is a local bundle; the `@local` scope is intentional and it is not published to npm. Clone the repository first:
+
+```sh
+git clone https://github.com/your-account/dsh-ssh.git
+cd dsh-ssh
+```
+
 ### A. Install with the plugin manager (recommended)
 
 In a profile where `plugin_manager` is available (Creator mode or a preset that enables it), ask the agent:
 
 ```text
 Install this local bundle with plugin_manager install_bundle:
-/absolute/path/to/SSH插件
+/absolute/path/to/dsh-ssh
 ```
 
 Then refresh the page. The SSH button appears at the bottom-right; the sidebar guide also gains an **SSH terminal** card.
@@ -62,7 +71,7 @@ DSH Desktop manages its `desktop` profile exclusively, so the `dsh plugin` CLI c
    ```json
    {
      "dependencies": {
-       "@local/dsh-ssh": "link:/absolute/path/to/SSH插件"
+       "@local/dsh-ssh": "link:/absolute/path/to/dsh-ssh"
      }
    }
    ```
@@ -232,4 +241,4 @@ Deleting a connection in the panel removes its stored profile and pinned host ke
 
 ## License
 
-No license has been declared yet. Add one before publishing or redistributing this project.
+MIT. See [LICENSE](LICENSE).
