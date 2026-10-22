@@ -1,6 +1,7 @@
 {
-  "name": "dsh-ssh-plugin",
+  "name": "@local/dsh-ssh",
   "version": "0.1.0",
+  "private": true,
   "description": "SSH connections, remote execution, terminals and SFTP file transfer for DeepSeek Harness.",
   "type": "module",
   "main": "index.js",
@@ -63,25 +64,5 @@
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Callay02/dsh-ssh.git"
-  },
-  "homepage": "https://github.com/Callay02/dsh-ssh#readme",
-  "bugs": {
-    "url": "https://github.com/Callay02/dsh-ssh/issues"
-  },
-  "keywords": [
-    "deepseek",
-    "deepseek-harness",
-    "dsh",
-    "ssh",
-    "sftp",
-    "terminal",
-    "plugin"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+  "license": "MIT"
 }

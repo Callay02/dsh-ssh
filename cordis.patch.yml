@@ -2,4 +2,4 @@
 # `dsh.client` in package.json; this patch only needs the Host entry.
 - insert:
     - id: ssh
-      name: 'dsh-ssh-plugin'
+      name: '@local/dsh-ssh'

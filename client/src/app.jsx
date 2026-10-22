@@ -12,7 +12,7 @@ import {
 } from './ui.jsx'
 import { t, useLocale } from './i18n.js'
 
-export const TAB_ID = 'dsh-ssh-plugin/ssh-tab'
+export const TAB_ID = '@local/dsh-ssh/ssh-tab'
 export const TAB_KIND = 'ssh'
 
 const STORAGE_KEY = 'dsh.ssh.activeConnection'

@@ -1,6 +1,6 @@
 /* Built from client/src — run "npm run build" after editing. */
 window.__ModuleLoader__.load({
-  id: "dsh-ssh-plugin",
+  id: "@local/dsh-ssh",
   factory: (require) => {
     var module = { exports: {} };
     var exports = module.exports;
@@ -11042,7 +11042,7 @@ function TerminalView({ session, active, onExit, onReconnect, connectionStatus, 
 }
 
 // client/src/app.jsx
-var TAB_ID = "dsh-ssh-plugin/ssh-tab";
+var TAB_ID = "@local/dsh-ssh/ssh-tab";
 var TAB_KIND = "ssh";
 var STORAGE_KEY = "dsh.ssh.activeConnection";
 var tabPresenceListeners = /* @__PURE__ */ new Set();
