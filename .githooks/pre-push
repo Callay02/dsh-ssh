@@ -1,0 +1,3 @@
+#!/bin/sh
+# Push gate: refuse to publish a HEAD that contains personal data.
+exec sh "$(git rev-parse --show-toplevel)/scripts/check-privacy.sh" --all

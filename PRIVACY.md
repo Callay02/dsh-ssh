@@ -35,6 +35,7 @@ Then:
 
 - `.githooks/pre-commit` runs `scripts/check-privacy.sh --staged`.
 - `.githooks/commit-msg` runs the same checker against the commit message.
+- `.githooks/pre-push` runs the full check against `HEAD` before publishing.
 
 Run the full check manually at any time:
 
