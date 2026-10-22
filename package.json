@@ -25,7 +25,8 @@
     "LICENSE",
     "CHANGELOG.md",
     "test",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    "PRIVACY.md"
   ],
   "dsh": {
     "bundle": {

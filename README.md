@@ -159,6 +159,17 @@ DSH Desktop 的 `desktop` profile 由 Electron 独占，`dsh plugin` CLI 拒绝�
 - **数据回传**：列表接口只返回 `hasPassword` / `hasPassphrase` 布尔值，不返回密钥内容。
 - **Agent 权限**：Agent 能对已配置连接执行任意远程命令。请只添加确实要交给 Agent 的服务器，并按需使用受限账号。
 
+## 隐私与提交检查
+
+仓库不保存真实连接、凭据或个人标识。提交前会运行本地 Git hook 和 GitHub Actions 隐私检查；新增或修改截图必须先打码，并登记到 `privacy/approved-images.txt`。
+
+```sh
+git config core.hooksPath .githooks
+sh scripts/check-privacy.sh --all
+```
+
+详见 [PRIVACY.md](PRIVACY.md)。
+
 ## 已知限制
 
 - 终端传输使用长轮询（最长 8 秒一次挂起请求），不是 WebSocket；交互延迟通常在几十毫秒，但不适合高帧率全屏程序。

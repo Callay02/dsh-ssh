@@ -183,6 +183,17 @@ Add a `config` block to the `ssh` row in `cordis.patch.yml` (all fields optional
 - **No secret leakage**: list responses expose only `hasPassword` / `hasPassphrase`, never the secret itself.
 - **Agent authority**: the Agent can run arbitrary commands on connections you configure. Only add servers you intend to delegate, and use limited accounts where appropriate.
 
+## Privacy checks
+
+The repository must not contain real connections, credentials or personal identifiers. A local Git hook and a GitHub Actions workflow check the staged tree; new or changed screenshots must be redacted and recorded in `privacy/approved-images.txt`.
+
+```sh
+git config core.hooksPath .githooks
+sh scripts/check-privacy.sh --all
+```
+
+See [PRIVACY.md](PRIVACY.md).
+
 ## Architecture
 
 ```text

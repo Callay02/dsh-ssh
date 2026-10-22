@@ -1,0 +1,3 @@
+#!/bin/sh
+# Local gate: refuse a commit containing personal data or an unapproved image.
+exec sh "$(git rev-parse --show-toplevel)/scripts/check-privacy.sh" --staged
